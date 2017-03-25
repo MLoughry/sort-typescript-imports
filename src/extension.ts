@@ -14,7 +14,8 @@ export function activate(context: vscode.ExtensionContext) {
     let disposable = vscode.commands.registerCommand('extension.sortTypescriptImports', () => {
         // The code you place here will be executed every time your command is executed
 
-        if (vscode.window.activeTextEditor.document.languageId === 'typescript') {
+        if (vscode.window.activeTextEditor.document.languageId === 'typescript'
+            || vscode.window.activeTextEditor.document.languageId === 'typescriptreact') {
             sortSelectedImports();
         }
     });

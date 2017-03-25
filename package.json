@@ -1,15 +1,29 @@
 {
   "name": "sort-typescript-imports",
   "displayName": "Sort Typescript Imports",
-  "description": "Sorts the imports in your Typescript code",
-  "version": "0.0.1",
-  "publisher": "miclo",
+  "description": "Sorts import statements in Typescript code",
+  "version": "1.0.0",
+  "publisher": "Michael Loughry",
+  "license": "MIT",
+  "icon": "images/icon.png",
+  "bugs": {
+    "url": "https://github.com/MLoughry/sort-typescript-imports/issues"
+  },
+  "homepage": "https://github.com/MLoughry/sort-typescript-imports/blob/master/README.md",
+  "repository": {
+      "type": "git",
+      "url": "https://github.com/MLoughry/sort-typescript-imports.git"
+  },
   "engines": {
     "vscode": "^1.10.0"
   },
   "categories": [
     "Formatters"
   ],
+  "galleryBanner": {
+      "color": "#f0efe7",
+      "theme": "light"
+  },
   "keywords": [
     "Typescript",
     "imports",
@@ -38,8 +52,8 @@
             "path",
             "importName"
           ],
-          "description": "What value to sort by when sorting imports",
-          "default": "path"
+          "description": "Whether to sort by the name of the import or the source path of the import",
+          "default": "importName"
         },
         "typescript.extension.sortImports.maxNamedImportsInSingleLine": {
           "type": "number",
@@ -63,11 +77,21 @@
           "when": "resourceLangId == typescript && !inDebugMode",
           "command": "extension.sortTypescriptImports",
           "group": "1_modification"
+        },
+        {
+          "when": "resourceLangId == typescriptreact && !inDebugMode",
+          "command": "extension.sortTypescriptImports",
+          "group": "1_modification"
         }
       ],
       "editor/title/context": [
         {
           "when": "resourceLangId == typescript && !inDebugMode",
+          "command": "extension.sortTypescriptImports",
+          "group": "1_modification"
+        },
+        {
+          "when": "resourceLangId == typescriptreact && !inDebugMode",
           "command": "extension.sortTypescriptImports",
           "group": "1_modification"
         }
@@ -76,6 +100,11 @@
     "keybindings": [
       {
         "when": "resourceLangId == typescript && editorTextFocus && !inDebugMode",
+        "command": "extension.sortTypescriptImports",
+        "key": "f10"
+      },
+      {
+        "when": "resourceLangId == typescriptreact && editorTextFocus && !inDebugMode",
         "command": "extension.sortTypescriptImports",
         "key": "f10"
       }

@@ -10,12 +10,12 @@ const destructingImportToken = `(${name})(\\s+as\\s+(${name}))?`;
 const destructingImport = `{(${ws}*${destructingImportToken}(,${ws}*${destructingImportToken})*${ws}*)}`;
 const defaultAndDestructingImport = `${defaultImportToken}${ws}*,${ws}*${destructingImport}`;
 const combinedImportTypes = `(${namespaceToken}|${defaultImportToken}|${destructingImport}|${defaultAndDestructingImport})`;
-const importRegexString = `^import\\s+${combinedImportTypes}\\s+from\\s+['"]([\\w\\\\/\.-]+)['"];?\\r?\\n?`;
+const importRegexString = `^import\\s+(${combinedImportTypes}\\s+from\\s+)?['"]([\\w\\\\/\.-]+)['"];?\\r?\\n?`;
 
-// Group 4 || Group 17 - default import
-// Group 2 - namespace import
-// Group 5 || Group 18 - destructing import group; requires further tokenizing
-// Group 30 - file path or package
+// Group 5 || Group 18 - default import
+// Group 3 - namespace import
+// Group 6 || Group 19 - destructing import group; requires further tokenizing
+// Group 31 - file path or package
 const importRegex = new RegExp(importRegexString, 'gm');
 
 // Group 1 - importName
@@ -30,10 +30,10 @@ export default function parseImportNodes(document: vscode.TextDocument) {
     let match;
     while (match = importRegex.exec(source)) {
         imports.push({
-            path: match[30],
-            default: match[4] || match[17],
-            namedImports: parseDestructiveImports(match[5] || match[18]),
-            namespace: match[2],
+            path: match[31],
+            default: match[5] || match[18],
+            namedImports: parseDestructiveImports(match[6] || match[19]),
+            namespace: match[3],
             range: new vscode.Range(
                 document.positionAt(match.index),
                 document.positionAt(importRegex.lastIndex)

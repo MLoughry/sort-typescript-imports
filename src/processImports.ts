@@ -20,7 +20,8 @@ function compareImportClauses(a: TypescriptImport, b: TypescriptImport) {
         return compareImportType(a, b)
             || (a.namespace && compareCaseInsensitive(a.namespace, b.namespace))
             || (a.default && compareCaseInsensitive(a.default, b.default))
-            || compareCaseInsensitive(a.namedImports[0].importName, b.namedImports[0].importName);
+            || (a.namedImports && compareCaseInsensitive(a.namedImports[0].importName, b.namedImports[0].importName))
+            || comparePath(a, b);
     }
 }
 
@@ -51,7 +52,9 @@ function getImportTypePriority(importClause: TypescriptImport) {
         return 0;
     } else if (importClause.default) {
         return 1;
-    } else {
+    } else if (importClause.namedImports) {
         return 2;
+    } else {
+        return 3;
     }
 }

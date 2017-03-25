@@ -18,8 +18,10 @@ function getImportClauseString(importClause: TypescriptImport): string {
         } else {
             return `import ${importClause.default} from ${path};`;
         }
-    } else {
+    } else if (importClause.namedImports) {
             return `import ${generatedNamedImportGroup(importClause.namedImports)} from ${path};`;
+    } else {
+        return `import ${path};`;
     }
 }
 
