@@ -1,4 +1,5 @@
 import { DestructedImport, TypescriptImport } from "./TypescriptImport";
+import * as vscode from 'vscode';
 
 const name = `((?!\\d)(?:(?!\\s)[$\\w\\u0080-\\uFFFF]|\\\\u[\\da-fA-F]{4}|\\\\u\\{[\\da-fA-F]+\\})+)`;
 const ws = `[\\s\\n\\r]`;
@@ -21,7 +22,8 @@ const importRegex = new RegExp(importRegexString, 'gm');
 // Group 4 - alias
 const destructingImportTokenRegex = new RegExp(destructingImportToken);
 
-export default function parseImportNodes(source: string) {
+export default function parseImportNodes(document: vscode.TextDocument) {
+    let source = document.getText();
     importRegex.lastIndex = 0;
     let imports: TypescriptImport[] = [];
 
@@ -32,6 +34,10 @@ export default function parseImportNodes(source: string) {
             default: match[4] || match[17],
             namedImports: parseDestructiveImports(match[5] || match[18]),
             namespace: match[2],
+            range: new vscode.Range(
+                document.positionAt(match.index),
+                document.positionAt(importRegex.lastIndex)
+            ),
         });
     }
 

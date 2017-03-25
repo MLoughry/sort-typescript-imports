@@ -1,4 +1,6 @@
 import { TypescriptImport, NamedImport } from "./TypescriptImport";
+import * as vscode from 'vscode';
+import * as options from './options';
 
 export default function getSortedImportStatements(importClauses: TypescriptImport[]): string {
     return importClauses
@@ -11,12 +13,23 @@ function getImportClauseString(importClause: TypescriptImport): string {
         return `import * as ${importClause.namespace} from '${importClause.path}';`;
     } else if (importClause.default) {
         if (importClause.namedImports) {
-            return `import ${importClause.default}, { ${importClause.namedImports.map(generateNamedImport).join(", ")} } from '${importClause.path}';`;
+            return `import ${importClause.default}, ${generatedNamedImportGroup(importClause.namedImports)} from '${importClause.path}';`;
         } else {
             return `import ${importClause.default} from '${importClause.path}';`;
         }
     } else {
-            return `import { ${importClause.namedImports.map(generateNamedImport).join(", ")} } from '${importClause.path}';`;
+            return `import ${generatedNamedImportGroup(importClause.namedImports)} from '${importClause.path}';`;
+    }
+}
+
+function generatedNamedImportGroup(namedImports: NamedImport[]): string {
+    let generatedNamedImports = namedImports.map(generateNamedImport);
+    let maxImportsPerSingleLine = options.getMaxNamedImportsPerSingleLine();
+    if (generatedNamedImports.length > maxImportsPerSingleLine) {
+        let newline = `\n${options.getTabString()}`;
+        return `{${newline}${generatedNamedImports.join(`,${newline}`)}${newline}}`;
+    } else {
+        return `{ ${generatedNamedImports.join(', ')} }`;
     }
 }
 

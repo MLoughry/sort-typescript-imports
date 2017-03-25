@@ -11,14 +11,51 @@
         "Other"
     ],
     "activationEvents": [
-        "onCommand:extension.sayHello"
+        "onCommand:extension.sortTypescriptImports"
     ],
     "main": "./out/src/extension",
     "contributes": {
         "commands": [{
-            "command": "extension.sayHello",
-            "title": "Hello World"
-        }]
+            "command": "extension.sortTypescriptImports",
+            "title": "Sort imports"
+        }],
+        "configuration": {
+            "type": "object",
+            "title": "Sort imports configuration",
+            "properties": {
+                "typescript.extension.sortImports.sortMethod": {
+                    "type": "string",
+                    "enum": [
+                        "path",
+                        "importName"
+                    ],
+                    "description": "What value to sort by when sorting imports",
+                    "default": "path"
+                },
+                "typescript.extension.sortImports.maxNamedImportsInSingleLine": {
+                    "type": "number",
+                    "description": "The maximum number of named imports to include in a single line",
+                    "default": 3
+                }
+            }
+        },
+        "menus": {
+            "editor/context": [{
+                "when": "resourceLangId == typescript && !inDebugMode",
+                "command": "extension.sortTypescriptImports",
+                "group": "1_modification"
+            }],
+            "editor/title/context": [{
+                "when": "resourceLangId == typescript && !inDebugMode",
+                "command": "extension.sortTypescriptImports",
+                "group": "1_modification"
+            }]
+        },
+        "keybindings": [{
+                "when": "resourceLangId == typescript && editorTextFocus && !inDebugMode",
+                "command": "extension.sortTypescriptImports",
+                "key": "f10"
+            }]
     },
     "scripts": {
         "vscode:prepublish": "tsc -p ./",
