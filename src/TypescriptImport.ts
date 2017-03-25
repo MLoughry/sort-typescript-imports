@@ -3,7 +3,7 @@ export interface NamedImport {
     alias?: string;
 }
 
-export type DestructedImport = NamedImport | string;
+export type DestructedImport = NamedImport;
 
 export interface TypescriptImport {
     path: string;

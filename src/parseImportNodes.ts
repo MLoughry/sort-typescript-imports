@@ -25,26 +25,24 @@ export default function parseImportNodes(source: string) {
     importRegex.lastIndex = 0;
     let imports: TypescriptImport[] = [];
 
-    let strippedSource = source.replace(
-        importRegex,
-        () => {
-            imports.push({
-                path: arguments[30],
-                default: arguments[4] || arguments[17],
-                namedImports: parseDestructiveImports(arguments[5] || arguments[18]),
-                namespace: arguments[2],
-            });
-            return "";
-        }
-    );
+    let match;
+    while (match = importRegex.exec(source)) {
+        imports.push({
+            path: match[30],
+            default: match[4] || match[17],
+            namedImports: parseDestructiveImports(match[5] || match[18]),
+            namespace: match[2],
+        });
+    }
 
-    return  {
-        imports,
-        strippedSource
-    };
+    return imports;
 }
 
 function parseDestructiveImports(destructiveImports: string): DestructedImport[] {
+    if (!destructiveImports) {
+        return null;
+    }
+
     return destructiveImports
         .split(",")
         .map(destructiveImport => {
