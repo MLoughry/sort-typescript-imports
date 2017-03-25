@@ -9,9 +9,23 @@ export function getTabString(editor: vscode.TextEditor = vscode.window.activeTex
 }
 
 export function getMaxNamedImportsPerSingleLine() {
-    return vscode.workspace.getConfiguration('typescript.extension.sortImports').get('maxNamedImportsInSingleLine');
+    return getExtensionConfig().get('maxNamedImportsInSingleLine');
 }
 
 export function getSortOption() {
-    return vscode.workspace.getConfiguration('typescript.extension.sortImports').get('sortMethod');
+    return getExtensionConfig().get('sortMethod');
+}
+
+export function getQuoteToken() {
+    switch (getExtensionConfig().get('quoteStyle')) {
+        case 'double':
+            return '"';
+        case 'single':
+        default:
+            return '\'';
+    }
+}
+
+function getExtensionConfig() {
+    return vscode.workspace.getConfiguration('typescript.extension.sortImports');
 }

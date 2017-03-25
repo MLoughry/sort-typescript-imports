@@ -1,5 +1,5 @@
 import { TypescriptImport } from "./TypescriptImport";
-import * as options from './options';
+import * as options from "./options";
 
 export default function processImports(importClauses: TypescriptImport[]): TypescriptImport[] {
     return importClauses

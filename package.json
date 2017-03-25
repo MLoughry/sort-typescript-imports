@@ -1,80 +1,97 @@
 {
-    "name": "sort-typescript-imports",
-    "displayName": "Sort Typescript Imports",
-    "description": "Sorts the imports in your Typescript code",
-    "version": "0.0.1",
-    "publisher": "miclo",
-    "engines": {
-        "vscode": "^1.10.0"
-    },
-    "categories": [
-        "Formatters"
+  "name": "sort-typescript-imports",
+  "displayName": "Sort Typescript Imports",
+  "description": "Sorts the imports in your Typescript code",
+  "version": "0.0.1",
+  "publisher": "miclo",
+  "engines": {
+    "vscode": "^1.10.0"
+  },
+  "categories": [
+    "Formatters"
+  ],
+  "keywords": [
+    "Typescript",
+    "imports",
+    "sort",
+    "import statements",
+    "import clauses"
+  ],
+  "activationEvents": [
+    "onCommand:extension.sortTypescriptImports"
+  ],
+  "main": "./out/src/extension",
+  "contributes": {
+    "commands": [
+      {
+        "command": "extension.sortTypescriptImports",
+        "title": "Sort imports"
+      }
     ],
-    "keywords": [
-        "Typescript",
-        "imports",
-        "sort",
-        "import statements",
-        "import clauses"
-    ],
-    "activationEvents": [
-        "onCommand:extension.sortTypescriptImports"
-    ],
-    "main": "./out/src/extension",
-    "contributes": {
-        "commands": [{
-            "command": "extension.sortTypescriptImports",
-            "title": "Sort imports"
-        }],
-        "configuration": {
-            "type": "object",
-            "title": "Sort imports configuration",
-            "properties": {
-                "typescript.extension.sortImports.sortMethod": {
-                    "type": "string",
-                    "enum": [
-                        "path",
-                        "importName"
-                    ],
-                    "description": "What value to sort by when sorting imports",
-                    "default": "path"
-                },
-                "typescript.extension.sortImports.maxNamedImportsInSingleLine": {
-                    "type": "number",
-                    "description": "The maximum number of named imports to include in a single line",
-                    "default": 3
-                }
-            }
+    "configuration": {
+      "type": "object",
+      "title": "Sort imports configuration",
+      "properties": {
+        "typescript.extension.sortImports.sortMethod": {
+          "type": "string",
+          "enum": [
+            "path",
+            "importName"
+          ],
+          "description": "What value to sort by when sorting imports",
+          "default": "path"
         },
-        "menus": {
-            "editor/context": [{
-                "when": "resourceLangId == typescript && !inDebugMode",
-                "command": "extension.sortTypescriptImports",
-                "group": "1_modification"
-            }],
-            "editor/title/context": [{
-                "when": "resourceLangId == typescript && !inDebugMode",
-                "command": "extension.sortTypescriptImports",
-                "group": "1_modification"
-            }]
+        "typescript.extension.sortImports.maxNamedImportsInSingleLine": {
+          "type": "number",
+          "description": "The maximum number of named imports to include in a single line",
+          "default": 3
         },
-        "keybindings": [{
-                "when": "resourceLangId == typescript && editorTextFocus && !inDebugMode",
-                "command": "extension.sortTypescriptImports",
-                "key": "f10"
-            }]
+        "typescript.extension.sortImports.quoteStyle": {
+          "type": "string",
+          "description": "The type of quote to use for the file or package paths",
+          "enum": [
+            "single",
+            "double"
+          ],
+          "default": "single"
+        }
+      }
     },
-    "scripts": {
-        "vscode:prepublish": "tsc -p ./",
-        "compile": "tsc -watch -p ./",
-        "postinstall": "node ./node_modules/vscode/bin/install",
-        "test": "node ./node_modules/vscode/bin/test"
+    "menus": {
+      "editor/context": [
+        {
+          "when": "resourceLangId == typescript && !inDebugMode",
+          "command": "extension.sortTypescriptImports",
+          "group": "1_modification"
+        }
+      ],
+      "editor/title/context": [
+        {
+          "when": "resourceLangId == typescript && !inDebugMode",
+          "command": "extension.sortTypescriptImports",
+          "group": "1_modification"
+        }
+      ]
     },
-    "devDependencies": {
-        "typescript": "^2.0.3",
-        "vscode": "^1.0.0",
-        "mocha": "^2.3.3",
-        "@types/node": "^6.0.40",
-        "@types/mocha": "^2.2.32"
-    }
+    "keybindings": [
+      {
+        "when": "resourceLangId == typescript && editorTextFocus && !inDebugMode",
+        "command": "extension.sortTypescriptImports",
+        "key": "f10"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "tsc -p ./",
+    "compile": "tsc -watch -p ./",
+    "postinstall": "node ./node_modules/vscode/bin/install",
+    "test": "node ./node_modules/vscode/bin/test"
+  },
+  "devDependencies": {
+    "typescript": "^2.0.3",
+    "vscode": "^1.0.0",
+    "mocha": "^2.3.3",
+    "@types/node": "^6.0.40",
+    "@types/mocha": "^2.2.32"
+  }
 }

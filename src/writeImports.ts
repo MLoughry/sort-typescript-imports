@@ -9,17 +9,23 @@ export default function getSortedImportStatements(importClauses: TypescriptImpor
 }
 
 function getImportClauseString(importClause: TypescriptImport): string {
+    let path = getPath(importClause);
     if (importClause.namespace) {
-        return `import * as ${importClause.namespace} from '${importClause.path}';`;
+        return `import * as ${importClause.namespace} from ${path};`;
     } else if (importClause.default) {
         if (importClause.namedImports) {
-            return `import ${importClause.default}, ${generatedNamedImportGroup(importClause.namedImports)} from '${importClause.path}';`;
+            return `import ${importClause.default}, ${generatedNamedImportGroup(importClause.namedImports)} from ${path};`;
         } else {
-            return `import ${importClause.default} from '${importClause.path}';`;
+            return `import ${importClause.default} from ${path};`;
         }
     } else {
-            return `import ${generatedNamedImportGroup(importClause.namedImports)} from '${importClause.path}';`;
+            return `import ${generatedNamedImportGroup(importClause.namedImports)} from ${path};`;
     }
+}
+
+function getPath(importClause: TypescriptImport): string {
+    let quote = options.getQuoteToken();
+    return `${quote}${importClause.path}${quote}`;
 }
 
 function generatedNamedImportGroup(namedImports: NamedImport[]): string {
