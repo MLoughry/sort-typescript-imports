@@ -3,7 +3,7 @@
   "displayName": "Sort Typescript Imports",
   "description": "Sorts import statements in Typescript code",
   "version": "1.0.0",
-  "publisher": "Michael Loughry",
+  "publisher": "miclo",
   "license": "MIT",
   "icon": "images/icon.png",
   "bugs": {
