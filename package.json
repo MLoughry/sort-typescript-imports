@@ -8,7 +8,14 @@
         "vscode": "^1.10.0"
     },
     "categories": [
-        "Other"
+        "Formatters"
+    ],
+    "keywords": [
+        "Typescript",
+        "imports",
+        "sort",
+        "import statements",
+        "import clauses"
     ],
     "activationEvents": [
         "onCommand:extension.sortTypescriptImports"
