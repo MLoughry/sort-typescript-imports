@@ -1,3 +1,5 @@
+
+
 {
   "name": "sort-typescript-imports",
   "displayName": "Sort Typescript Imports",
@@ -56,6 +58,22 @@
           ],
           "description": "Whether to sort by the name of the import or the source path of the import",
           "default": "importName"
+        },
+        "typescript.extension.sortImports.pathSortOrder": {
+          "type": "array",
+          "items": {
+            "type":"string",
+            "enum": [
+              "package",
+              "relativeUpLevel",
+              "relativeDownLevel"
+            ]
+          },
+          "uniqueItems": true,
+          "minItems": 2,
+          "maxItems": 2,
+          "description": "When `sortMethod` is set to `path`, this controls the order to sort imports between package-level and path-relative imports. 'relativeUpLevel' describes relative paths that begin with '../', while ;relativeDownLevel' describes relative paths that begin with './'",
+          "default": ["relativeDownLevel", "relativeUpLevel", "package"]
         },
         "typescript.extension.sortImports.maxNamedImportsInSingleLine": {
           "type": "number",

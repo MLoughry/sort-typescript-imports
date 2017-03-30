@@ -30,6 +30,10 @@ export function shouldSortOnSave(): boolean {
     return getExtensionConfig().get('sortOnSave') as boolean;
 }
 
+export function getPathSortOrdering(): string[] {
+    return getExtensionConfig().get('pathSortOrder') as string[];
+}
+
 function getExtensionConfig() {
     return vscode.workspace.getConfiguration('typescript.extension.sortImports');
 }
