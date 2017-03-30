@@ -40,7 +40,6 @@ This configurable extension allows you to sort all the imports in a *.ts or *.ts
 
 ### 1.2.0
 - Added the ability to configure how sorting by import path is done.
-- Fixed a bug where the extension would process non-Typescript files when saving
 
 ### 1.1.0
 - Added the option to sort imports whenever you save, controlled by the `typescript.extension.sortImports.sortOnSave` setting (`false` by default).

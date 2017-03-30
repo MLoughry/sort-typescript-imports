@@ -1,11 +1,13 @@
-import { TypescriptImport, NamedImport } from './TypescriptImport';
 import * as vscode from 'vscode';
 import * as options from './options';
+import { NamedImport, TypescriptImport } from './TypescriptImport';
 
 export default function getSortedImportStatements(importClauses: TypescriptImport[]): string {
-    return importClauses
-        .map(getImportClauseString)
-        .join('\n') + '\n';
+    if (importClauses && importClauses.length) {
+        return importClauses
+            .map(getImportClauseString)
+            .join('\n') + '\n';
+    }
 }
 
 function getImportClauseString(importClause: TypescriptImport): string {

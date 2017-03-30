@@ -1,9 +1,8 @@
-
 {
   "name": "sort-typescript-imports",
   "displayName": "Sort Typescript Imports",
   "description": "Sorts import statements in Typescript code",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "publisher": "miclo",
   "license": "MIT",
   "icon": "images/icon.png",
