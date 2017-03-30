@@ -2,6 +2,7 @@
 
 ## [1.2.1]
 - Fix bug with package paths that contained an `@` symbol
+- Fix bug that would add a newline to the beginning of any file without import statements
 
 ## [1.2.0]
 - Added the ability to configure how sorting by import path is done.
