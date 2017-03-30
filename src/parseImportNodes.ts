@@ -10,7 +10,7 @@ const destructingImportToken = `(${name})(\\s+as\\s+(${name}))?`;
 const destructingImport = `{(${ws}*${destructingImportToken}(,${ws}*${destructingImportToken})*${ws}*)}`;
 const defaultAndDestructingImport = `${defaultImportToken}${ws}*,${ws}*${destructingImport}`;
 const combinedImportTypes = `(${namespaceToken}|${defaultImportToken}|${destructingImport}|${defaultAndDestructingImport})`;
-const importRegexString = `^import\\s+(${combinedImportTypes}\\s+from\\s+)?['"]([\\w\\\\/\.-]+)['"];?\\r?\\n?`;
+const importRegexString = `^import\\s+(${combinedImportTypes}\\s+from\\s+)?['"]([@\\w\\\\/\.-]+)['"];?\\r?\\n?`;
 
 // Group 5 || Group 18 - default import
 // Group 3 - namespace import
