@@ -2,9 +2,9 @@ import * as vscode from 'vscode';
 
 export function getTabString(editor: vscode.TextEditor = vscode.window.activeTextEditor) {
     if (editor.options.insertSpaces) {
-        return new Array(editor.options.tabSize as number + 1).join(" ");
+        return new Array(editor.options.tabSize as number + 1).join(' ');
     } else {
-        return "\t";
+        return '\t';
     }
 }
 
@@ -24,6 +24,10 @@ export function getQuoteToken() {
         default:
             return '\'';
     }
+}
+
+export function shouldSortOnSave(): boolean {
+    return getExtensionConfig().get('sortOnSave') as boolean;
 }
 
 function getExtensionConfig() {

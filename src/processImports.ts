@@ -1,11 +1,11 @@
-import { TypescriptImport } from "./TypescriptImport";
-import * as options from "./options";
+import { TypescriptImport } from './TypescriptImport';
+import * as options from './options';
 
 export default function processImports(importClauses: TypescriptImport[]): TypescriptImport[] {
     return importClauses
         .map(importClause => {
             if (importClause.namedImports) {
-                importClause.namedImports.sort((a, b) => a.importName.localeCompare(b.importName, "en", "base"));
+                importClause.namedImports.sort((a, b) => a.importName.localeCompare(b.importName, 'en', 'base'));
             }
             return importClause;
         })
@@ -13,7 +13,7 @@ export default function processImports(importClauses: TypescriptImport[]): Types
 }
 
 function compareImportClauses(a: TypescriptImport, b: TypescriptImport) {
-    if (options.getSortOption() === "path") {
+    if (options.getSortOption() === 'path') {
         return comparePath(a, b)
             || compareCaseInsensitive(a.path, b.path);
     } else {
@@ -26,7 +26,7 @@ function compareImportClauses(a: TypescriptImport, b: TypescriptImport) {
 }
 
 function compareCaseInsensitive(a: string, b: string) {
-    return a.localeCompare(b, "en", "base");
+    return a.localeCompare(b, 'en', 'base');
 }
 
 function comparePath(a: TypescriptImport, b: TypescriptImport) {

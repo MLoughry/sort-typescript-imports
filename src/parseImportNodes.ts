@@ -1,4 +1,4 @@
-import { DestructedImport, TypescriptImport } from "./TypescriptImport";
+import { DestructedImport, TypescriptImport } from './TypescriptImport';
 import * as vscode from 'vscode';
 
 const name = `((?!\\d)(?:(?!\\s)[$\\w\\u0080-\\uFFFF]|\\\\u[\\da-fA-F]{4}|\\\\u\\{[\\da-fA-F]+\\})+)`;
@@ -50,7 +50,7 @@ function parseDestructiveImports(destructiveImports: string): DestructedImport[]
     }
 
     return destructiveImports
-        .split(",")
+        .split(',')
         .map(destructiveImport => {
             let match = destructingImportTokenRegex.exec(destructiveImport);
             return {
