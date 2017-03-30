@@ -1,5 +1,5 @@
-import { TypescriptImport } from './TypescriptImport';
 import * as options from './options';
+import { TypescriptImport } from './TypescriptImport';
 
 export default function processImports(importClauses: TypescriptImport[]): TypescriptImport[] {
     return importClauses
@@ -34,12 +34,13 @@ function comparePath(a: TypescriptImport, b: TypescriptImport) {
 }
 
 function getPathPriority(path: string) {
-    if (/^\./.test(path)) {
-        return 0;
-    } else if (/^\.\./.test(path)) {
-        return 1;
+    let sortOrder = options.getPathSortOrdering();
+    if (/^\.\//.test(path)) {
+        return sortOrder.indexOf('relativeDownLevel');
+    } else if (/^\.\.\//.test(path)) {
+        return sortOrder.indexOf('relativeUpLevel');
     } else {
-        return 2;
+        return sortOrder.indexOf('package');
     }
 }
 
