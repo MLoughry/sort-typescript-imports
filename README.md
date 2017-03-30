@@ -1,3 +1,6 @@
+
+
+
 # Sort Typescript imports
 
 Sort import statements in Typescript code
@@ -15,6 +18,11 @@ This configurable extension allows you to sort all the imports in a *.ts or *.ts
 * `typescript.extension.sortImports.sortMethod`: The method to use for sorting the imports.
   * `'importName'`(default) sorts by the type and name of the import. Namespace imports are first, followed by default imports, named imports, and unnamed imports.
   * `'path'` sorts by the import path, sorting relative-path imports above package imports
+* `typescript.extension.sortImports.pathSortOrder`: An array describing the order in which imports should be sorted by paths. Only applicable if `sortMethod` is set to `path`.
+  * Default: `["relativeDownLevel", "relativeUpLevel", "package"]`
+  * `package` - Any import path that does not begin with `.`
+  * `relativeUpLevel` - Any import path that begins with `../`
+  * `relativeDownLevel` - Any import path that begins with `./`
 * `typescript.extension.sortImports.maxNamedImportsInSingleLine`: The number of named imports to allow on a single line. If a single import has more than this number, they will be broken up onto separate lines.
 * `typescript.extension.sortImports.quoteStyle`: The type of quotation mark to use. `single`(default) or `double`.
 * `typescript.extension.sortImports.sortOnSave`: If set to `true`, imports will be sorted whenever you save a file. Default: `false`
@@ -23,7 +31,19 @@ This configurable extension allows you to sort all the imports in a *.ts or *.ts
 
 * This extension does not currently sort comments within the import block along with the import statements
 
+## Future roadmap
+- Handle distinct blocks of imports separated by a blank line.
+- Handle comments within import blocks
+- Read settings from existing tslint configuration.
+
 ## Release Notes
+
+### 1.2.0
+- Added the ability to configure how sorting by import path is done.
+- Fixed a bug where the extension would process non-Typescript files when saving
+
+### 1.1.0
+- Added the option to sort imports whenever you save, controlled by the `typescript.extension.sortImports.sortOnSave` setting (`false` by default).
 
 ### 1.0.0
 
