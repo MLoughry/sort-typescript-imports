@@ -1,6 +1,7 @@
-
-
 # Change Log
+
+## [1.2.1]
+- Fix bug with package paths that contained an `@` symbol
 
 ## [1.2.0]
 - Added the ability to configure how sorting by import path is done.
