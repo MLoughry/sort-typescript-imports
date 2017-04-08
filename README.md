@@ -26,6 +26,7 @@ This configurable extension allows you to sort all the imports in a *.ts or *.ts
 * `typescript.extension.sortImports.maxNamedImportsInSingleLine`: The number of named imports to allow on a single line. If a single import has more than this number, they will be broken up onto separate lines.
 * `typescript.extension.sortImports.quoteStyle`: The type of quotation mark to use. `single`(default) or `double`.
 * `typescript.extension.sortImports.sortOnSave`: If set to `true`, imports will be sorted whenever you save a file. Default: `false`
+* `typescript.extension.sortImports.omitSemicolon`: If set to `true`, the trailing semicolon will be omitted. Default: `false`
 
 ## Known Issues
 

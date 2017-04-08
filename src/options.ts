@@ -34,6 +34,10 @@ export function getPathSortOrdering(): string[] {
     return getExtensionConfig().get('pathSortOrder') as string[];
 }
 
+export function getOmitSemicolon(): boolean {
+    return getExtensionConfig().get('omitSemicolon') as boolean;
+}
+
 function getExtensionConfig() {
     return vscode.workspace.getConfiguration('typescript.extension.sortImports');
 }

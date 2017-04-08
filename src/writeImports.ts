@@ -12,18 +12,22 @@ export default function getSortedImportStatements(importClauses: TypescriptImpor
 
 function getImportClauseString(importClause: TypescriptImport): string {
     let path = getPath(importClause);
+    let semicolon = '';
+    if (!options.getOmitSemicolon()) {
+        semicolon = ';';
+    }
     if (importClause.namespace) {
-        return `import * as ${importClause.namespace} from ${path};`;
+        return `import * as ${importClause.namespace} from ${path}${semicolon}`;
     } else if (importClause.default) {
         if (importClause.namedImports) {
-            return `import ${importClause.default}, ${generatedNamedImportGroup(importClause.namedImports)} from ${path};`;
+            return `import ${importClause.default}, ${generatedNamedImportGroup(importClause.namedImports)} from ${path}${semicolon}`;
         } else {
-            return `import ${importClause.default} from ${path};`;
+            return `import ${importClause.default} from ${path}${semicolon}`;
         }
     } else if (importClause.namedImports) {
-            return `import ${generatedNamedImportGroup(importClause.namedImports)} from ${path};`;
+        return `import ${generatedNamedImportGroup(importClause.namedImports)} from ${path}${semicolon}`;
     } else {
-        return `import ${path};`;
+        return `import ${path}${semicolon}`;
     }
 }
 

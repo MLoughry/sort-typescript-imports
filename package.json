@@ -95,6 +95,11 @@
           "type": "boolean",
           "description": "Whether to sort all imports whenever saving a Typescript file",
           "default": false
+        },
+        "typescript.extension.sortImports.omitSemicolon": {
+          "type": "boolean",
+          "description": "Whether to omit the semicolon at the end of the line",
+          "default": false
         }
       }
     },
