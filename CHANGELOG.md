@@ -1,5 +1,8 @@
 # Change Log
 
+## [1.3.0]
+- Added configuration option to omit the semicolon at the end of the import clause.
+
 ## [1.2.1]
 - Fix bug with package paths that contained an `@` symbol
 - Fix bug that would add a newline to the beginning of any file without import statements
