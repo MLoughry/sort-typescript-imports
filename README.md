@@ -39,6 +39,9 @@ This configurable extension allows you to sort all the imports in a *.ts or *.ts
 
 ## Release Notes
 
+## 1.3.0
+- Added configuration option to omit the semicolon at the end of the import clause.
+
 ### 1.2.0
 - Added the ability to configure how sorting by import path is done.
 
