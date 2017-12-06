@@ -4,7 +4,7 @@
 import * as vscode from 'vscode';
 import sortInsideEditor from './sortInsideEditor';
 import sortOnSave from './sortOnSave';
-import { shouldSortOnSave } from './options';
+import { shouldSortOnSave, shouldEnableJavascript } from './options';
 
 let sortOnSaveDisposer: vscode.Disposable;
 
@@ -18,8 +18,8 @@ export function activate(context: vscode.ExtensionContext) {
     let sortOnCommandDisposer = vscode.commands.registerCommand('extension.sortTypescriptImports', () => {
         // The code you place here will be executed every time your command is executed
 
-        if (vscode.window.activeTextEditor.document.languageId === 'typescript'
-            || vscode.window.activeTextEditor.document.languageId === 'typescriptreact') {
+        if (shouldEnableJavascript() && isFileJavascript() ||
+            isFileTypescript()) {
             sortInsideEditor();
         }
     });
@@ -30,6 +30,20 @@ export function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(
         sortOnCommandDisposer,
         configurationWatcher);
+}
+
+function isFileJavascript() {
+    return (
+        vscode.window.activeTextEditor.document.languageId === 'javascript' ||
+        vscode.window.activeTextEditor.document.languageId === 'javascriptreact'
+    );
+}
+
+function isFileTypescript() {
+    return (
+        vscode.window.activeTextEditor.document.languageId === 'typescript' ||
+        vscode.window.activeTextEditor.document.languageId === 'typescriptreact'
+    );
 }
 
 function configure() {

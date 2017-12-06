@@ -26,6 +26,10 @@ export function getQuoteToken() {
     }
 }
 
+export function shouldEnableJavascript(): boolean {
+    return getExtensionConfig().get('enableJavascript') as boolean;
+}
+
 export function shouldSortOnSave(): boolean {
     return getExtensionConfig().get('sortOnSave') as boolean;
 }
