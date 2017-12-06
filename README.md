@@ -27,6 +27,7 @@ This configurable extension allows you to sort all the imports in a *.ts or *.ts
 * `typescript.extension.sortImports.quoteStyle`: The type of quotation mark to use. `single`(default) or `double`.
 * `typescript.extension.sortImports.sortOnSave`: If set to `true`, imports will be sorted whenever you save a file. Default: `false`
 * `typescript.extension.sortImports.omitSemicolon`: If set to `true`, the trailing semicolon will be omitted. Default: `false`
+* `typescript.extension.sortImports.enableJavascript`: If set to `true`, the extension will attempt to sort ES6-style imports in Javascript files. Default: `false`
 
 ## Known Issues
 

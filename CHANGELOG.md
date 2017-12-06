@@ -1,5 +1,11 @@
 # Change Log
 
+## [1.4.1]
+- Fix previous change by adding contribution points to package.json
+
+## [1.4.0]
+- Added the ability to sort ES6-style imports in JavaScript [rickyp-uber]
+
 ## [1.3.0]
 - Added configuration option to omit the semicolon at the end of the import clause.
 
