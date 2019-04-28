@@ -1,5 +1,7 @@
+## ⚠  This package is no longer maintained ⚠
+With the release of [Typescript 2.8](https://devblogs.microsoft.com/typescript/announcing-typescript-2-8-2/#organize-imports) over a year ago, the ability to organize imports comes bundled with Typescript, in a better implementation than this one made for a hack week. As such, I have no further plans to maintain this project.
 
-
+If for whatever reason you would like to take ownership of this repository, please let me know.
 
 # Sort Typescript imports
 
